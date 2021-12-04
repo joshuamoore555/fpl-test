@@ -1,4 +1,4 @@
-package mongo.config;
+package fpl.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -12,11 +12,10 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfiguration {
 
     @Bean
-    public OpenAPI customOpenAPI(@Value("${version}") final String appVersion) {
+    public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info()
-                .title("Mongo Example API")
-                .version(appVersion)
-                .description("This is an example of a Mongo DB example API.")
+                .title("FPL API")
+                .description("This is an example of a FPL API.")
                 .termsOfService("http://swagger.io/terms/")
                 .license(new License().name("Apache 2.0")
                         .url("http://springdoc.org")));
@@ -24,8 +23,8 @@ public class OpenApiConfiguration {
 
     @Bean
     public GroupedOpenApi personApi() {
-        final String[] paths = {"/person/**", "/people/**"};
-        return GroupedOpenApi.builder().group("people").pathsToMatch(paths)
+        final String[] paths = {"/fpl/**"};
+        return GroupedOpenApi.builder().group("fpl").pathsToMatch(paths)
                 .build();
     }
 }
