@@ -15,8 +15,7 @@ import static fpl.util.RestUtil.getGenericUrl;
 @Repository
 public class FplRepository {
     private static final String FPL_BASE_URL = "https://fantasy.premierleague.com/api";
-    private static HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
 
     public String getResponse(String path) throws IOException {
