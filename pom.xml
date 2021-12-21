@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.12</version>
+            <version>1.6.0</version>
         </dependency>
 
         <dependency>
@@ -139,10 +139,9 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>apply</goal>
                             <goal>check</goal>
                         </goals>
-                        <phase>verify</phase>
+                        <phase>compile</phase>
                     </execution>
                 </executions>
 
