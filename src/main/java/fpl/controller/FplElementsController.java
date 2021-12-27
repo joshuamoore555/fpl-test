@@ -5,12 +5,11 @@ import fpl.service.FplElementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -21,14 +20,14 @@ public class FplElementsController {
 
     private final FplElementService fplElementService;
 
-    @GetMapping(value ="/fpl/elements", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<LinkedHashMap<String, Object>>> getElements() throws IOException {
-        return ResponseEntity.ok(fplElementService.getFplData().getElements());
+    @GetMapping(value ="/fpl/elements/players/{playerName}", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Player>> getPlayer(@PathVariable String playerName) throws IOException {
+        return ResponseEntity.ok(fplElementService.getPlayerDataByName(playerName));
     }
 
-    @GetMapping(value ="/fpl/elements/top/players", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<Double, Player>> getIctIndex() throws IOException {
-        return ResponseEntity.ok(fplElementService.getIctIndex());
+    @GetMapping(value ="/fpl/elements/players", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Player>> getAllPlayers() throws IOException {
+        return ResponseEntity.ok(fplElementService.getPlayers());
     }
 
     @GetMapping(value ="/fpl/elements/top/goalkeepers", produces = APPLICATION_JSON_VALUE)
