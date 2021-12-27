@@ -1,6 +1,5 @@
 package fpl.repository;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
@@ -14,15 +13,13 @@ import static fpl.util.RestUtil.getGenericUrl;
 
 @Repository
 public class FplRepository {
-    private static final String FPL_BASE_URL = "https://fantasy.premierleague.com/api";
-    private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
+  private static final String FPL_BASE_URL = "https://fantasy.premierleague.com/api";
+  private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
-
-    public String getResponse(String path) throws IOException {
-        HttpRequestFactory requestFactory
-                = HTTP_TRANSPORT.createRequestFactory();
-        GenericUrl url = getGenericUrl(FPL_BASE_URL, path);
-        HttpRequest request = requestFactory.buildGetRequest(url);
-        return request.execute().parseAsString();
-    }
+  public String getResponse(final String path) throws IOException {
+    final HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory();
+    final GenericUrl url = getGenericUrl(FPL_BASE_URL, path);
+    final HttpRequest request = requestFactory.buildGetRequest(url);
+    return request.execute().parseAsString();
+  }
 }
