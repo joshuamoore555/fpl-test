@@ -13,18 +13,17 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor
 public class FplService {
-private final FplRepository fplRepository;
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static final String BOOTSTRAP_STATIC = "/bootstrap-static/";
+  private static final ObjectMapper MAPPER = new ObjectMapper();
+  private static final String BOOTSTRAP_STATIC = "/bootstrap-static/";
+  private final FplRepository fplRepository;
 
-    public FplData findAll() throws IOException {
-        String response = fplRepository.getResponse(BOOTSTRAP_STATIC);
-        return MAPPER.readValue(response, FplData.class);
+  public FplData findAll() throws IOException {
+    final String response = fplRepository.getResponse(BOOTSTRAP_STATIC);
+    return MAPPER.readValue(response, FplData.class);
+  }
 
-    }
-
-    public Integer getPlayerCount() throws IOException {
-        var fplData =  findAll();
-        return fplData.getTotalPlayers();
-    }
+  public Integer getPlayerCount() throws IOException {
+    final var fplData = findAll();
+    return fplData.getTotalPlayers();
+  }
 }
