@@ -2,11 +2,8 @@ package fpl.model;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Value;
 
 import java.util.List;
-
 
 @Builder
 @Data
@@ -15,8 +12,10 @@ public class Player implements Comparable<Player> {
   String position;
   String id;
   String form;
-  String transfersIn;
-  String transfersOut;
+  Integer transfersIn;
+  Integer transfersOut;
+  Integer chanceNextRound;
+  Integer chanceThisRound;
   String goals;
   String assists;
   String minutesPlayed;
@@ -26,11 +25,13 @@ public class Player implements Comparable<Player> {
   String bonusPoints;
   String team;
   String selectedBy;
+  boolean isDgw;
   List<FplFixtureData> nextFixtures;
   double ictIndex;
+  double playerRating;
 
   @Override
-  public int compareTo(Player o) {
-    return Double.compare(this.getIctIndex(), o.getIctIndex());
+  public int compareTo(final Player player) {
+    return Double.compare(playerRating, player.getPlayerRating());
   }
 }

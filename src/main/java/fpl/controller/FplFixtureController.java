@@ -1,6 +1,7 @@
 package fpl.controller;
 
-import fpl.service.FplFixtureService;
+import fpl.service.fixtures.FplFixtureService;
+import fpl.service.fixtures.FplFutureFixtureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +16,16 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequiredArgsConstructor
 public class FplFixtureController {
   private final FplFixtureService fplFixtureService;
+  private final FplFutureFixtureService fplFutureFixtureService;
 
   @GetMapping(value = "/fpl/future/fixtures", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<Object> getFutureFixtures() throws IOException {
-    return ResponseEntity.ok(fplFixtureService.getFutureFixtures());
+    return ResponseEntity.ok(fplFutureFixtureService.getFutureFixtures());
   }
 
   @GetMapping(value = "/fpl/future/dgw/fixtures", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<Object> getFutureDgwFixtures() throws IOException {
-    return ResponseEntity.ok(fplFixtureService.getFutureDgwFixtures());
+    return ResponseEntity.ok(fplFutureFixtureService.getFutureDgwFixtures());
   }
 
   @GetMapping(value = "/fpl/fixtures", produces = APPLICATION_JSON_VALUE)
@@ -40,6 +42,6 @@ public class FplFixtureController {
   @GetMapping(value = "/fpl/future/fixtures/{teamName}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<Object> getTeamSpecificFutureFixtures(@PathVariable final String teamName)
       throws IOException {
-    return ResponseEntity.ok(fplFixtureService.getTeamSpecificFutureFixtures(teamName));
+    return ResponseEntity.ok(fplFutureFixtureService.getFutureFixturesByTeam(teamName));
   }
 }
