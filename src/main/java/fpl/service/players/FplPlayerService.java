@@ -87,9 +87,9 @@ public class FplPlayerService {
     final double index = player.getIctIndex();
     final double form = Double.parseDouble(player.getForm()) * 100;
     final double selectedBy = Double.parseDouble(player.getSelectedBy()) * 100;
-    final double chanceThisRound = player.getChanceThisRound();
-    // final double chanceNextRound = player.getChanceNextRound();
-    final double chance = (chanceThisRound) / 1000;
+    // final double chanceThisRound = player.getChanceThisRound();
+    final double chanceNextRound = player.getChanceNextRound();
+    final double chance = (chanceNextRound) / 1000;
     final String logValue =
         "Name {}  "
             + "Index {} "
@@ -140,7 +140,6 @@ public class FplPlayerService {
     final String name = firstName + " " + secondName;
 
     final Integer chanceNextRound = getChance(String.valueOf(element), chanceNextRoundString);
-    final Integer chanceThisRound = getChance(String.valueOf(element), chanceThisRoundString);
 
     final String teamName = teams.get(teamIndex);
     if (secondName.equals("Salah")) {
@@ -152,7 +151,7 @@ public class FplPlayerService {
         .position(position)
         .ictIndex(ictIndex)
         .chanceNextRound(chanceNextRound)
-        .chanceThisRound(chanceThisRound)
+        // .chanceThisRound(chanceThisRound)
         .assists(assists)
         .bonusPoints(bonusPoints)
         .form(form)
